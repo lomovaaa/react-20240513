@@ -1,13 +1,13 @@
 import { FC } from "react";
-import { Restaurant } from "../../types";
+import { Restaurant as RestaurantType } from "../../types";
 import { Menu } from "../menu/component";
 import { Reviews } from "../reviews/component";
 
 type RestaurantCardProps = {
-  restaurant: Restaurant;
+  restaurant: RestaurantType;
 };
 
-export const RestaurantCard: FC<RestaurantCardProps> = ({
+export const Restaurant: FC<RestaurantCardProps> = ({
   restaurant: { name, menu, reviews },
 }) => (
   <div>

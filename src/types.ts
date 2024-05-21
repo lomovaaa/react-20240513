@@ -1,11 +1,11 @@
-export type RestaurantMenuItem = {
+export type RestaurantDish = {
   id: string;
   name: string;
   price: number;
   ingredients: Array<string>;
 };
 
-export type RestaurantReviewItem = {
+export type RestaurantReview = {
   id: string;
   user: string;
   text: string;
@@ -15,6 +15,6 @@ export type RestaurantReviewItem = {
 export type Restaurant = {
   id: string;
   name: string;
-  menu: Array<RestaurantMenuItem>;
-  reviews: Array<RestaurantReviewItem>;
+  menu: Array<RestaurantDish>;
+  reviews: Array<RestaurantReview>;
 };

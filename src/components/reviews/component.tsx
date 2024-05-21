@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { RestaurantReviewItem } from "../../types";
-import { ReviewsItem } from "../reviews-item/component";
+import { RestaurantReview } from "../../types";
+import { Review } from "../review/component";
 
 type ReviewsProps = {
-  reviews: Array<RestaurantReviewItem>;
+  reviews: Array<RestaurantReview>;
 };
 
 export const Reviews: FC<ReviewsProps> = ({ reviews }) => (
@@ -12,7 +12,7 @@ export const Reviews: FC<ReviewsProps> = ({ reviews }) => (
     <ul>
       {reviews.map((review) => (
         <li key={review.id}>
-          <ReviewsItem {...review} />
+          <Review {...review} />
         </li>
       ))}
     </ul>

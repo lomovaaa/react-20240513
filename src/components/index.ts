@@ -1,3 +1,4 @@
 export { Footer } from "./footer/component";
 export { Header } from "./header/component";
-export { RestaurantCard } from "./restaurant-card/component";
+export { Restaurant } from "./restaurant/component";
+export { Layout } from "./layout/component";
