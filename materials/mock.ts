@@ -26,7 +26,7 @@ export const restaurants = [
         {
           id: "5909796d-5030-4e36-adec-68b8f9ec2d96",
           user: "Antony",
-          text: "Not bad",
+          text: '',
           rating: 5,
         },
         {
@@ -54,50 +54,50 @@ export const restaurants = [
           ingredients: ["bread", "cheese", "tomatoes", "chicken"],
         },
       ],
-      reviews: [
-        {
-          id: "53b642d7-5e86-4717-a466-0640a1dee076",
-          user: "Diana",
-          text: "Perfect Margarita",
-          rating: 5,
-        },
-        {
-          id: "c27ab88e-375c-4e98-aa94-8a180150a797",
-          user: "Sam",
-          text: "No burgers again. But Chef Pizza is the best one",
-          rating: 4,
-        },
-        {
-          id: "abc0c5e1-cd57-4f0a-99d9-00e6b4533b3a",
-          user: "Lolly",
-          text: "Good for lunch",
-          rating: 5,
-        },
-      ],
+      // reviews: [
+      //   {
+      //     id: "53b642d7-5e86-4717-a466-0640a1dee076",
+      //     user: "Diana",
+      //     text: "Perfect Margarita",
+      //     rating: 5,
+      //   },
+      //   {
+      //     id: "c27ab88e-375c-4e98-aa94-8a180150a797",
+      //     user: "Sam",
+      //     text: "No burgers again. But Chef Pizza is the best one",
+      //     rating: 4,
+      //   },
+      //   {
+      //     id: "abc0c5e1-cd57-4f0a-99d9-00e6b4533b3a",
+      //     user: "Lolly",
+      //     text: "Good for lunch",
+      //     rating: 5,
+      //   },
+      // ],
     },
     {
       id: "982bfbce-c5e0-41a0-9f99-d5c20ecee49d",
       name: "Fabrique",
-      menu: [
-        {
-          id: "08c9ffa0-d003-4310-9e15-20978743296e",
-          name: "Cinnamon buns",
-          price: 5,
-          ingredients: ["bread"],
-        },
-        {
-          id: "64a4967c-2080-4a99-9074-4655a4569a95",
-          name: "Semlor",
-          price: 2,
-          ingredients: ["bread", "cream"],
-        },
-        {
-          id: "4bc8528e-26d1-46c3-a522-8e18d10c8c84",
-          name: "Saffron bun",
-          price: 4,
-          ingredients: ["bread"],
-        },
-      ],
+      // menu: [
+      //   {
+      //     id: "08c9ffa0-d003-4310-9e15-20978743296e",
+      //     name: "Cinnamon buns",
+      //     price: 5,
+      //     ingredients: ["bread"],
+      //   },
+      //   {
+      //     id: "64a4967c-2080-4a99-9074-4655a4569a95",
+      //     name: "Semlor",
+      //     price: 2,
+      //     ingredients: ["bread", "cream"],
+      //   },
+      //   {
+      //     id: "4bc8528e-26d1-46c3-a522-8e18d10c8c84",
+      //     name: "Saffron bun",
+      //     price: 4,
+      //     ingredients: ["bread"],
+      //   },
+      // ],
       reviews: [
         {
           id: "53b642d7-5e86-4717-a466-0640a1dee076",
