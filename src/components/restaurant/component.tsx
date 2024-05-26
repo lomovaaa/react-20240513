@@ -12,7 +12,7 @@ export const Restaurant: FC<RestaurantCardProps> = ({
 }) => (
   <div>
     <h2>{name}</h2>
-    <Menu menu={menu} />
-    <Reviews reviews={reviews} />
+    {menu && <Menu menu={menu} />}
+    {reviews && <Reviews reviews={reviews} />}
   </div>
 );
