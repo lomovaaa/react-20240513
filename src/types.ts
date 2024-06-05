@@ -18,3 +18,5 @@ export type Restaurant = {
   menu?: Array<RestaurantDish>;
   reviews?: Array<RestaurantReview>;
 };
+
+export type Nullable<T> = T | null;
