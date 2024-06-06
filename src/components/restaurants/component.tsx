@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { Restaurant as RestaurantType } from "../../types";
 import { Restaurant } from "../restaurant/component";
 import { Tabs } from "../tabs/component";
+import { ProgressBar } from "../progress-bar/component";
 
 type RestaurantsProps = {
   restaurants: Array<RestaurantType>;
@@ -18,7 +19,14 @@ export const Restaurants: FC<RestaurantsProps> = ({ restaurants }) => {
 
   return (
     <div>
+      <ProgressBar />
       <Tabs restaurants={restaurants} onChange={setActiveRestaurantId} />
+      {currentRestaurant && <Restaurant restaurant={currentRestaurant} />}
+      {currentRestaurant && <Restaurant restaurant={currentRestaurant} />}
+      {currentRestaurant && <Restaurant restaurant={currentRestaurant} />}
+      {currentRestaurant && <Restaurant restaurant={currentRestaurant} />}
+      {currentRestaurant && <Restaurant restaurant={currentRestaurant} />}
+      {currentRestaurant && <Restaurant restaurant={currentRestaurant} />}
       {currentRestaurant && <Restaurant restaurant={currentRestaurant} />}
     </div>
   );
