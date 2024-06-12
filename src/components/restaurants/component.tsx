@@ -1,26 +1,24 @@
 import { FC, useState } from "react";
-import { Restaurant as RestaurantType } from "../../types";
-import { Restaurant } from "../restaurant/component";
-import { Tabs } from "../tabs/component";
+import { RestaurantTabsContainer } from "../restaurant-tabs/container";
+import { RestaurantContainer } from "../restaurant/container";
+import { RestaurantNormalized } from "../../types";
 
 type RestaurantsProps = {
-  restaurants: Array<RestaurantType>;
+  restaurants: {
+    [key: string]: RestaurantNormalized;
+  };
 };
 
 export const Restaurants: FC<RestaurantsProps> = ({ restaurants }) => {
   const [activeRestaurantId, setActiveRestaurantId] = useState(
-    restaurants[0].id
-  );
-
-  const currentRestaurant = restaurants.find(
-    ({ id }) => id === activeRestaurantId
+    () => Object.values(restaurants)[0].id
   );
 
   return (
     <div>
       {/* <ProgressBar /> */}
-      <Tabs restaurants={restaurants} onChange={setActiveRestaurantId} />
-      {currentRestaurant && <Restaurant restaurant={currentRestaurant} />}
+      <RestaurantTabsContainer onClick={setActiveRestaurantId} />
+      <RestaurantContainer restaurantId={activeRestaurantId} />
     </div>
   );
 };
