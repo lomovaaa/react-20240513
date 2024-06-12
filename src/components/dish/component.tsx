@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { RestaurantDish } from "../../types";
 import { useCount } from "../../hooks/use-count";
+import { Button } from "../button/component";
 
 export const Dish: FC<RestaurantDish> = ({ name }) => {
   const { counter, increment, decrement } = useCount();
@@ -10,12 +11,12 @@ export const Dish: FC<RestaurantDish> = ({ name }) => {
       <p>{name}</p>
       <div>
         <p>{counter}</p>
-        <button type="button" onClick={increment}>
+        <Button type="button" onClick={increment}>
           +
-        </button>
-        <button type="button" onClick={decrement}>
+        </Button>
+        <Button type="button" onClick={decrement}>
           -
-        </button>
+        </Button>
       </div>
     </div>
   );

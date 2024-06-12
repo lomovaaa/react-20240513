@@ -22,12 +22,6 @@ export const Restaurants: FC<RestaurantsProps> = ({ restaurants }) => {
       <ProgressBar />
       <Tabs restaurants={restaurants} onChange={setActiveRestaurantId} />
       {currentRestaurant && <Restaurant restaurant={currentRestaurant} />}
-      {currentRestaurant && <Restaurant restaurant={currentRestaurant} />}
-      {currentRestaurant && <Restaurant restaurant={currentRestaurant} />}
-      {currentRestaurant && <Restaurant restaurant={currentRestaurant} />}
-      {currentRestaurant && <Restaurant restaurant={currentRestaurant} />}
-      {currentRestaurant && <Restaurant restaurant={currentRestaurant} />}
-      {currentRestaurant && <Restaurant restaurant={currentRestaurant} />}
     </div>
   );
 };

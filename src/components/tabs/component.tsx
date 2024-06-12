@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Restaurant } from "../../types";
+import { Button } from "../button/component";
 
 type TabsProps = {
   restaurants: Array<Restaurant>;
@@ -9,9 +10,9 @@ type TabsProps = {
 export const Tabs: FC<TabsProps> = ({ restaurants, onChange }) => (
   <div>
     {restaurants.map(({ id, name }) => (
-      <button key={id} type="button" onClick={() => onChange?.(id)}>
+      <Button key={id} type="button" onClick={() => onChange?.(id)}>
         {name}
-      </button>
+      </Button>
     ))}
   </div>
 );
