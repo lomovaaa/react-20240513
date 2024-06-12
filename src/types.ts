@@ -50,6 +50,7 @@ export type Store = {
   dish: StoreSlice<RestaurantDish>;
   review: StoreSlice<RestaurantReviewNormalized>;
   user: StoreSlice<UserNormalized>;
+  cart: any;
 };
 
 export type Nullable<T> = T | null;
