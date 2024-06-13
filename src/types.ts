@@ -1,3 +1,5 @@
+import { EntityState } from "@reduxjs/toolkit";
+
 export type RestaurantDish = {
   id: string;
   name: string;
@@ -38,19 +40,12 @@ export type UserNormalized = {
   name: string;
 };
 
-type StoreSlice<T> = {
-  entities: {
-    [key: string]: T;
-  };
-  ids: Array<string>;
-};
-
 export type Store = {
-  restaurant: StoreSlice<RestaurantNormalized>;
-  dish: StoreSlice<RestaurantDish>;
-  review: StoreSlice<RestaurantReviewNormalized>;
-  user: StoreSlice<UserNormalized>;
-  cart: any;
+  restaurant: EntityState<RestaurantNormalized, string>;
+  dish: EntityState<RestaurantDish, string>;
+  review: EntityState<RestaurantReviewNormalized, string>;
+  user: EntityState<UserNormalized, string>;
+  cart: Record<string, number>;
 };
 
 export type Nullable<T> = T | null;

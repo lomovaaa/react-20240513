@@ -15,5 +15,9 @@ export const RestaurantContainer: FC<RestaurantContainerProps> = ({
     selectRestaurantById(state, restaurantId)
   );
 
+  if (!restaurant) {
+    return null;
+  }
+
   return <Restaurant restaurant={restaurant} />;
 };

@@ -11,7 +11,7 @@ type RestaurantsProps = {
 
 export const Restaurants: FC<RestaurantsProps> = ({ restaurants }) => {
   const [activeRestaurantId, setActiveRestaurantId] = useState(
-    () => Object.values(restaurants)[0].id
+    () => Object.values(restaurants)[0]?.id
   );
 
   return (

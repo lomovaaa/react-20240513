@@ -13,4 +13,7 @@ export const store = configureStore({
     UserSlice,
     CartSlice
   ),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
+
+export type StoreDispatch = typeof store.dispatch;

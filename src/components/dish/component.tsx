@@ -13,17 +13,17 @@ type DishProps = {
 export const Dish: FC<DishProps> = ({ dish, count, increment, decrement }) => {
   const { user } = useUser();
 
+  if (!dish) {
+    return null;
+  }
+
   const { name } = dish;
 
   return (
     <div>
       <p>{name}</p>
       {user && (
-        <Counter
-          value={count}
-          increment={increment}
-          decrement={decrement}
-        />
+        <Counter value={count} increment={increment} decrement={decrement} />
       )}
       <p>{dish.price}</p>
     </div>
