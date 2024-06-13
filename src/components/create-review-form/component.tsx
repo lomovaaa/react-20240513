@@ -1,5 +1,6 @@
 import { FC, Reducer, useReducer } from "react";
 import { ReviewRating } from "../review-rating/component";
+import { Button } from "../button/component";
 
 type FormValues = {
   name: string;
@@ -63,7 +64,7 @@ export const CreateReviewForm: FC = () => {
       <ReviewRating
         onChange={(value) => dispatch({ type: "setRating", payload: value })}
       />
-      <button>Сохранить</button>
+      <Button>Сохранить</Button>
     </form>
   );
 };
