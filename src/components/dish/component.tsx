@@ -1,35 +1,30 @@
 import { FC } from "react";
-import { useCount } from "../../hooks/use-count";
-import { Button } from "../button/component";
 import { useUser } from "../../hooks/use-user";
 import { RestaurantDish } from "../../types";
+import { Counter } from "../counter/component";
 
 type DishProps = {
   dish: RestaurantDish;
+  count: number;
+  increment: () => void;
+  decrement: () => void;
 };
 
-export const Dish: FC<DishProps> = ({ dish }) => {
-  const { counter, increment, decrement } = useCount();
+export const Dish: FC<DishProps> = ({ dish, count, increment, decrement }) => {
   const { user } = useUser();
+
+  if (!dish) {
+    return null;
+  }
 
   const { name } = dish;
 
   return (
     <div>
       <p>{name}</p>
-      <div>
-        <p>{counter}</p>
-        {user && (
-          <>
-            <Button type="button" onClick={increment}>
-              +
-            </Button>
-            <Button type="button" onClick={decrement}>
-              -
-            </Button>
-          </>
-        )}
-      </div>
+      {user && (
+        <Counter value={count} increment={increment} decrement={decrement} />
+      )}
       <p>{dish.price}</p>
     </div>
   );

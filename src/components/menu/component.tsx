@@ -5,15 +5,17 @@ type MenuProps = {
   dishIds: Array<string>;
 };
 
-export const Menu: FC<MenuProps> = ({ dishIds }) => (
-  <div>
-    <h3>Меню</h3>
-    <ul>
-      {dishIds.map((dishId) => (
-        <li key={dishId}>
-          <DishContainer id={dishId} />
-        </li>
-      ))}
-    </ul>
-  </div>
-);
+export const Menu: FC<MenuProps> = ({ dishIds }) => {
+  return (
+    <div>
+      <h3>Меню</h3>
+      <ul>
+        {dishIds.map((dishId) => (
+          <li key={dishId}>
+            <DishContainer id={dishId} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
