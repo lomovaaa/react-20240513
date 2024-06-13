@@ -1,7 +1,13 @@
 import { FC } from "react";
-import { RestaurantReview } from "../../types";
+import { RestaurantReviewNormalized } from "../../types";
 
-export const Review: FC<RestaurantReview> = ({ text }) => {
+type ReviewProps = {
+  review: RestaurantReviewNormalized;
+};
+
+export const Review: FC<ReviewProps> = ({ review }) => {
+  const { text } = review;
+
   if (text || Boolean(text?.length)) {
     return <p>{text}</p>;
   }
