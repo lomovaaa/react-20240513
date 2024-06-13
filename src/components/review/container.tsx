@@ -11,5 +11,9 @@ type ReviewContainerProps = {
 export const ReviewContainer: FC<ReviewContainerProps> = ({ id }) => {
   const review = useSelector((state: Store) => selectReviewById(state, id));
 
+  if (!review) {
+    return null;
+  }
+
   return <Review review={review} />;
 };
