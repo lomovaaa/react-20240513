@@ -1,18 +1,17 @@
 import { FC } from "react";
-import { RestaurantDish } from "../../types";
-import { Dish } from "../dish/component";
+import { DishContainer } from "../dish/container";
 
 type MenuProps = {
-  menu: Array<RestaurantDish>;
+  dishIds: Array<string>;
 };
 
-export const Menu: FC<MenuProps> = ({ menu }) => (
+export const Menu: FC<MenuProps> = ({ dishIds }) => (
   <div>
     <h3>Меню</h3>
     <ul>
-      {menu.map((dish) => (
-        <li key={dish.id}>
-          <Dish {...dish} />
+      {dishIds.map((dishId) => (
+        <li key={dishId}>
+          <DishContainer id={dishId} />
         </li>
       ))}
     </ul>
