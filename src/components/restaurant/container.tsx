@@ -1,19 +1,17 @@
 import { FC } from "react";
-import { useSelector } from "react-redux";
-import { Store } from "../../types";
-import { selectRestaurantById } from "../../redux/entities/restaurant/selectors";
 import { Restaurant } from "./component";
+import { useGetRestaurantsQuery } from "../../redux/service/api";
+import { selectRestaurantFromResult } from "../../redux/service/api/selectors";
 
 type RestaurantContainerProps = {
-  restaurantId: string;
+  id: string;
 };
 
-export const RestaurantContainer: FC<RestaurantContainerProps> = ({
-  restaurantId,
-}) => {
-  const restaurant = useSelector((state: Store) =>
-    selectRestaurantById(state, restaurantId)
-  );
+export const RestaurantContainer: FC<RestaurantContainerProps> = ({ id }) => {
+  const { data: restaurant } = useGetRestaurantsQuery(undefined, {
+    skip: !id,
+    selectFromResult: selectRestaurantFromResult(id),
+  });
 
   if (!restaurant) {
     return null;

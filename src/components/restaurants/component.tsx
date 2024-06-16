@@ -1,24 +1,27 @@
-import { FC, useState } from "react";
-import { RestaurantTabsContainer } from "../restaurant-tabs/container";
+import { FC, useEffect, useState } from "react";
 import { RestaurantContainer } from "../restaurant/container";
-import { RestaurantNormalized } from "../../types";
+import { Nullable, RestaurantNormalized } from "../../types";
+import { RestaurantTabs } from "../restaurant-tabs/component";
 
 type RestaurantsProps = {
-  restaurants: {
-    [key: string]: RestaurantNormalized;
-  };
+  restaurants: Array<RestaurantNormalized>;
 };
 
 export const Restaurants: FC<RestaurantsProps> = ({ restaurants }) => {
-  const [activeRestaurantId, setActiveRestaurantId] = useState(
-    () => Object.values(restaurants)[0]?.id
-  );
+  const [activeRestaurantId, setActiveRestaurantId] =
+    useState<Nullable<string>>(null);
+
+  useEffect(() => {
+    if (!activeRestaurantId && restaurants.length) {
+      setActiveRestaurantId(restaurants[0].id);
+    }
+  }, [activeRestaurantId, restaurants]);
 
   return (
     <div>
       {/* <ProgressBar /> */}
-      <RestaurantTabsContainer onClick={setActiveRestaurantId} />
-      <RestaurantContainer restaurantId={activeRestaurantId} />
+      <RestaurantTabs restaurants={restaurants} onClick={setActiveRestaurantId} />
+      {activeRestaurantId && <RestaurantContainer id={activeRestaurantId} />}
     </div>
   );
 };

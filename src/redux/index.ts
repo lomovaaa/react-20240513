@@ -4,6 +4,7 @@ import { UserSlice } from "./entities/user";
 import { DishSlice } from "./entities/dish";
 import { ReviewSlice } from "./entities/review";
 import { CartSlice } from "./ui/cart";
+import { apiService } from "./service/api";
 
 export const store = configureStore({
   reducer: combineSlices(
@@ -11,9 +12,11 @@ export const store = configureStore({
     DishSlice,
     ReviewSlice,
     UserSlice,
-    CartSlice
+    CartSlice,
+    apiService,
   ),
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiService.middleware),
 });
 
 export type StoreDispatch = typeof store.dispatch;
