@@ -49,3 +49,9 @@ export type Store = {
 };
 
 export type Nullable<T> = T | null;
+
+export type CreateReviewRequest = {
+  text: string;
+  rating: string;
+  user: string;
+};

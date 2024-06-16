@@ -19,7 +19,7 @@ export const Restaurant: FC<RestaurantProps> = ({ restaurant }) => {
       <h2>{name}</h2>
       {menu && <MenuContainer restaurantId={id} />}
       {reviews && <ReviewsContainer restaurantId={id} />}
-      {user && <CreateReviewForm />}
+      {user && <CreateReviewForm restaurantId={id} />}
     </div>
   );
 };
