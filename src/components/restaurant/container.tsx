@@ -2,20 +2,24 @@ import { FC } from "react";
 import { Restaurant } from "./component";
 import { useGetRestaurantsQuery } from "../../redux/service/api";
 import { selectRestaurantFromResult } from "../../redux/service/api/selectors";
+import { Outlet, useParams } from "react-router-dom";
 
-type RestaurantContainerProps = {
-  id: string;
-};
+export const RestaurantContainer: FC = () => {
+  const { restaurantId } = useParams();
 
-export const RestaurantContainer: FC<RestaurantContainerProps> = ({ id }) => {
   const { data: restaurant } = useGetRestaurantsQuery(undefined, {
-    skip: !id,
-    selectFromResult: selectRestaurantFromResult(id),
+    skip: !restaurantId,
+    selectFromResult: selectRestaurantFromResult(restaurantId || ""),
   });
 
   if (!restaurant) {
     return null;
   }
 
-  return <Restaurant restaurant={restaurant} />;
+  return (
+    <div>
+      <Restaurant restaurant={restaurant} />
+      <Outlet />
+    </div>
+  );
 };

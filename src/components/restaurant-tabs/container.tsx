@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { Restaurants } from "./component";
 import { useGetRestaurantsQuery } from "../../redux/service/api";
+import { RestaurantTabs } from "./component";
 
-export const RestaurantsContainer: FC = () => {
+export const RestaurantTabsContainer: FC = () => {
   const { data: restaurants, isLoading } = useGetRestaurantsQuery(undefined);
 
   if (isLoading) {
@@ -13,5 +13,5 @@ export const RestaurantsContainer: FC = () => {
     return null;
   }
 
-  return <Restaurants restaurants={restaurants} />;
+  return <RestaurantTabs restaurants={restaurants} />;
 };

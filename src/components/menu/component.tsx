@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { DishContainer } from "../dish/container";
 import { RestaurantDish } from "../../types";
+import { Link } from "react-router-dom";
 
 type MenuProps = {
   dishes: Array<RestaurantDish>;
@@ -13,7 +13,7 @@ export const Menu: FC<MenuProps> = ({ dishes }) => {
       <ul>
         {dishes.map((dish) => (
           <li key={dish.id}>
-            <DishContainer dish={dish} />
+            <Link to={`/dish/${dish.id}`}>{dish.name}</Link>
           </li>
         ))}
       </ul>

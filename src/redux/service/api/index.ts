@@ -19,6 +19,11 @@ export const apiService = createApi({
         params: { restaurantId },
       }),
     }),
+    getDishById: builder.query({
+      query: (dishId: string) => ({
+        url: `/dish/${dishId}`,
+      }),
+    }),
     getReviewsByRestaurantId: builder.query({
       query: (restaurantId: string) => ({
         url: "reviews",
@@ -65,4 +70,5 @@ export const {
   useGetReviewsByRestaurantIdQuery,
   useCreateReviewMutation,
   useUpdateReviewMutation,
+  useGetDishByIdQuery,
 } = apiService;

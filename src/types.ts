@@ -24,6 +24,7 @@ export type Restaurant = {
 export type RestaurantNormalized = {
   id: string;
   name: string;
+  description: string;
   menu?: Array<string>;
   reviews?: Array<string>;
 };
