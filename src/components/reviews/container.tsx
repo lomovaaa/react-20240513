@@ -1,16 +1,14 @@
 import { FC } from "react";
 import { Reviews } from "./component";
 import { useGetReviewsByRestaurantIdQuery } from "../../redux/service/api";
+import { useParams } from "react-router-dom";
 
-type ReviewsContainerProps = {
-  restaurantId: string;
-};
+export const ReviewsContainer: FC = () => {
+  const { restaurantId } = useParams();
 
-export const ReviewsContainer: FC<ReviewsContainerProps> = ({
-  restaurantId,
-}) => {
-  const { data: reviews, isFetching } =
-    useGetReviewsByRestaurantIdQuery(restaurantId);
+  const { data: reviews, isFetching } = useGetReviewsByRestaurantIdQuery(
+    restaurantId || ""
+  );
 
   if (isFetching) {
     return <div>Loading...</div>;

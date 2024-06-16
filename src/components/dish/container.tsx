@@ -1,16 +1,18 @@
 import { FC, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RestaurantDish, Store } from "../../types";
+import { Store } from "../../types";
 import { Dish } from "./component";
 import { add, remove } from "../../redux/ui/cart";
 import { selectDishCount } from "../../redux/ui/cart/selectors";
+import { useParams } from "react-router-dom";
+import { useGetDishByIdQuery } from "../../redux/service/api";
 
-type DishContainerProps = {
-  dish: RestaurantDish;
-};
+export const DishContainer: FC = () => {
+  const { dishId } = useParams();
 
-export const DishContainer: FC<DishContainerProps> = ({ dish }) => {
-  const { id } = dish;
+  const { data: dish, isLoading } = useGetDishByIdQuery(dishId || "");
+
+  const { id } = dish || {};
 
   const count = useSelector((state: Store) => selectDishCount(state, id));
 
@@ -23,6 +25,10 @@ export const DishContainer: FC<DishContainerProps> = ({ dish }) => {
   const handleDecrement = useCallback(() => {
     dispatch(remove(id));
   }, [dispatch, id]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Dish

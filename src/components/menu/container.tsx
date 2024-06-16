@@ -1,14 +1,14 @@
 import { FC } from "react";
 import { Menu } from "./component";
 import { useGetDishesByRestaurantIdQuery } from "../../redux/service/api";
+import { useParams } from "react-router-dom";
 
-type MenuContainerProps = {
-  restaurantId: string;
-};
+export const MenuContainer: FC = () => {
+  const { restaurantId } = useParams();
 
-export const MenuContainer: FC<MenuContainerProps> = ({ restaurantId }) => {
-  const { data: dishes, isFetching } =
-    useGetDishesByRestaurantIdQuery(restaurantId);
+  const { data: dishes, isFetching } = useGetDishesByRestaurantIdQuery(
+    restaurantId || ""
+  );
 
   if (isFetching) {
     return <div>Loading...</div>;

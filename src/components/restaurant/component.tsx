@@ -1,25 +1,19 @@
 import { FC } from "react";
-import { useUser } from "../../hooks/use-user";
 import { RestaurantNormalized } from "../../types";
-import { MenuContainer } from "../menu/container";
-import { ReviewsContainer } from "../reviews/container";
-import { CreateReviewFormContainer } from "../create-review-form/container";
+import { RestaurantNavigationTabs } from "../restaurant-navigation-tabs/component";
 
 type RestaurantProps = {
   restaurant: RestaurantNormalized;
 };
 
 export const Restaurant: FC<RestaurantProps> = ({ restaurant }) => {
-  const { user } = useUser();
-
-  const { name, menu, reviews, id } = restaurant;
+  const { name, description } = restaurant;
 
   return (
     <div>
       <h2>{name}</h2>
-      {menu && <MenuContainer restaurantId={id} />}
-      {reviews && <ReviewsContainer restaurantId={id} />}
-      {user && <CreateReviewFormContainer restaurantId={id} />}
+      <p>{description}</p>
+      <RestaurantNavigationTabs />
     </div>
   );
 };

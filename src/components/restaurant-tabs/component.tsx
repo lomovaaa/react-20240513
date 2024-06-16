@@ -1,25 +1,32 @@
 import { FC } from "react";
-import { RestaurantTab } from "../restaurant-tab/component";
 import { RestaurantNormalized } from "../../types";
+import { Tab } from "../tab/component";
+import { useSearchParams } from "react-router-dom";
 
 type RestaurantTabsProps = {
   restaurants: Array<RestaurantNormalized>;
-  onClick?: (id: string) => void;
 };
 
-export const RestaurantTabs: FC<RestaurantTabsProps> = ({
-  restaurants,
-  onClick,
-}) => {
+export const RestaurantTabs: FC<RestaurantTabsProps> = ({ restaurants }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchValue = searchParams.get("search") || "";
+
   return (
     <div>
-      {restaurants.map((restaurant) => (
-        <RestaurantTab
-          key={restaurant.id}
-          title={restaurant.name}
-          onClick={() => onClick?.(restaurant.id)}
-        />
-      ))}
+      <input
+        value={searchValue}
+        onChange={(event) => setSearchParams({ search: event.target.value })}
+      />
+      {restaurants
+        .filter(
+          ({ name }) =>
+            name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1
+        )
+        .map(({ id, name }) => (
+          <Tab key={id} to={id}>
+            {name}
+          </Tab>
+        ))}
     </div>
   );
 };
