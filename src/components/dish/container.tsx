@@ -1,17 +1,16 @@
 import { FC, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Store } from "../../types";
-import { selectDishById } from "../../redux/entities/dish/selectors";
+import { RestaurantDish, Store } from "../../types";
 import { Dish } from "./component";
 import { add, remove } from "../../redux/ui/cart";
 import { selectDishCount } from "../../redux/ui/cart/selectors";
 
 type DishContainerProps = {
-  id: string;
+  dish: RestaurantDish;
 };
 
-export const DishContainer: FC<DishContainerProps> = ({ id }) => {
-  const dish = useSelector((state: Store) => selectDishById(state, id));
+export const DishContainer: FC<DishContainerProps> = ({ dish }) => {
+  const { id } = dish;
 
   const count = useSelector((state: Store) => selectDishCount(state, id));
 

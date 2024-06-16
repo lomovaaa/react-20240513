@@ -1,16 +1,24 @@
 import { FC } from "react";
-import { RestaurantTabContainer } from "../restaurant-tab/container";
+import { RestaurantTab } from "../restaurant-tab/component";
+import { RestaurantNormalized } from "../../types";
 
 type RestaurantTabsProps = {
-  restaurantIds: Array<string>;
+  restaurants: Array<RestaurantNormalized>;
   onClick?: (id: string) => void;
 };
 
-export const RestaurantTabs: FC<RestaurantTabsProps> = ({ restaurantIds, onClick }) => {
+export const RestaurantTabs: FC<RestaurantTabsProps> = ({
+  restaurants,
+  onClick,
+}) => {
   return (
     <div>
-      {restaurantIds.map((id) => (
-        <RestaurantTabContainer key={id} id={id} onClick={onClick} />
+      {restaurants.map((restaurant) => (
+        <RestaurantTab
+          key={restaurant.id}
+          title={restaurant.name}
+          onClick={() => onClick?.(restaurant.id)}
+        />
       ))}
     </div>
   );

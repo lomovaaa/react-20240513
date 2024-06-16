@@ -1,18 +1,13 @@
-import { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectRestaurants } from "../../redux/entities/restaurant/selectors";
+import { FC } from "react";
 import { Restaurants } from "./component";
-import { getRestaurants } from "../../redux/entities/restaurant/thunks/get-restaurants";
-import { StoreDispatch } from "../../redux";
+import { useGetRestaurantsQuery } from "../../redux/service/api";
 
 export const RestaurantsContainer: FC = () => {
-  const restaurants = useSelector(selectRestaurants);
+  const { data: restaurants, isLoading } = useGetRestaurantsQuery(undefined);
 
-  const dispatch = useDispatch<StoreDispatch>();
-
-  useEffect(() => {
-    dispatch(getRestaurants());
-  }, []);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   if (!restaurants) {
     return null;

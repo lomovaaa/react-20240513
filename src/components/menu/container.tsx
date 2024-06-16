@@ -1,29 +1,22 @@
-import { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getDishesByRestaurantId } from "../../redux/entities/dish/thunks/get-dishes-by-restaurant-id";
+import { FC } from "react";
 import { Menu } from "./component";
-import { Store } from "../../types";
-import { selectRestaurantDishIds } from "../../redux/entities/restaurant/selectors";
-import { StoreDispatch } from "../../redux";
+import { useGetDishesByRestaurantIdQuery } from "../../redux/service/api";
 
 type MenuContainerProps = {
   restaurantId: string;
 };
 
 export const MenuContainer: FC<MenuContainerProps> = ({ restaurantId }) => {
-  const dispatch = useDispatch<StoreDispatch>();
+  const { data: dishes, isFetching } =
+    useGetDishesByRestaurantIdQuery(restaurantId);
 
-  const dishIds = useSelector((state: Store) =>
-    selectRestaurantDishIds(state, restaurantId)
-  );
+  if (isFetching) {
+    return <div>Loading...</div>;
+  }
 
-  useEffect(() => {
-    dispatch(getDishesByRestaurantId(restaurantId));
-  }, [restaurantId, dispatch]);
-
-  if (!dishIds) {
+  if (!dishes?.length) {
     return null;
   }
 
-  return <Menu dishIds={dishIds} />;
+  return <Menu dishes={dishes} />;
 };

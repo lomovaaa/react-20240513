@@ -1,10 +1,6 @@
-import { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getReviewsByRestaurantId } from "../../redux/entities/review/thunks/get-reviews-by-restaurant-id";
-import { StoreDispatch } from "../../redux";
-import { Store } from "../../types";
-import { selectRestaurantReviewIds } from "../../redux/entities/restaurant/selectors";
+import { FC } from "react";
 import { Reviews } from "./component";
+import { useGetReviewsByRestaurantIdQuery } from "../../redux/service/api";
 
 type ReviewsContainerProps = {
   restaurantId: string;
@@ -13,19 +9,16 @@ type ReviewsContainerProps = {
 export const ReviewsContainer: FC<ReviewsContainerProps> = ({
   restaurantId,
 }) => {
-  const dispatch = useDispatch<StoreDispatch>();
+  const { data: reviews, isFetching } =
+    useGetReviewsByRestaurantIdQuery(restaurantId);
 
-  const reviewIds = useSelector((state: Store) =>
-    selectRestaurantReviewIds(state, restaurantId)
-  );
+  if (isFetching) {
+    return <div>Loading...</div>;
+  }
 
-  useEffect(() => {
-    dispatch(getReviewsByRestaurantId(restaurantId));
-  }, [restaurantId, dispatch]);
-
-  if (!reviewIds) {
+  if (!reviews) {
     return null;
   }
 
-  return <Reviews reviewIds={reviewIds} />;
+  return <Reviews reviews={reviews} />;
 };
