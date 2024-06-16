@@ -1,6 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_ENDPOINT } from "../../../constants/endpoint";
-import { CreateReviewRequest } from "../../../types";
+import {
+  CreateReviewRequest,
+  RestaurantReviewNormalized,
+} from "../../../types";
 
 export const apiService = createApi({
   reducerPath: "api",
@@ -23,7 +26,7 @@ export const apiService = createApi({
       }),
       providesTags: (result, _, restaurantId) =>
         result
-          .map(({ id }) => ({ type: "Review", id }))
+          .map(({ id }: RestaurantReviewNormalized) => ({ type: "Review", id }))
           .concat(
             { type: "Review", id: "All" },
             { type: "Restaurant", id: restaurantId }
@@ -45,6 +48,14 @@ export const apiService = createApi({
         { type: "Restaurant", id: restaurantId },
       ],
     }),
+    updateReview: builder.mutation({
+      query: (review: RestaurantReviewNormalized) => ({
+        url: `review/${review.id}`,
+        method: "PATCH",
+        body: review,
+      }),
+      invalidatesTags: (_, __, review) => [{ type: "Review", id: review.id }],
+    }),
   }),
 });
 
@@ -53,4 +64,5 @@ export const {
   useGetDishesByRestaurantIdQuery,
   useGetReviewsByRestaurantIdQuery,
   useCreateReviewMutation,
+  useUpdateReviewMutation,
 } = apiService;

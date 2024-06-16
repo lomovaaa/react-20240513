@@ -10,8 +10,8 @@ export type RestaurantDish = {
 export type RestaurantReview = {
   id: string;
   user: string;
-  text?: string;
-  rating: number;
+  text: string;
+  rating: string;
 };
 
 export type Restaurant = {
@@ -31,8 +31,8 @@ export type RestaurantNormalized = {
 export type RestaurantReviewNormalized = {
   id: string;
   userId: string;
-  text?: string;
-  rating: number;
+  text: string;
+  rating: string;
 };
 
 export type UserNormalized = {
@@ -53,5 +53,5 @@ export type Nullable<T> = T | null;
 export type CreateReviewRequest = {
   text: string;
   rating: string;
-  user: string;
+  userId: string;
 };
